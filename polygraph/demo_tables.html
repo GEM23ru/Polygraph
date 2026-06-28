@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Демо таблиц — выбери стиль</title>
+<style>
+  :root {
+    --accent:#22d3ee; --accent-2:#0891b2;
+    --bg:#0b0d12; --bg2:#12151d; --bg3:#1a1e29;
+    --border:#242936; --text:#e6e8ee; --muted:#8b93a3;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:"Inter","SF Pro Text",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    background:var(--bg); color:var(--text); padding:40px 30px; line-height:1.5; }
+  h1 { font-size:24px; margin-bottom:8px; }
+  .sub { color:var(--muted); font-size:14px; margin-bottom:40px; }
+  .variant { max-width:760px; margin:0 auto 60px; }
+  .variant h2 { font-size:18px; font-weight:700; margin-bottom:6px; color:var(--accent); }
+  .variant .desc { color:var(--muted); font-size:13px; margin-bottom:16px; }
+
+  /* === Вариант 1: ChatGPT-стиль (сейчас) === */
+  .v1 table { border-collapse:collapse; font-size:14px; width:auto; min-width:0; }
+  .v1 th { border-bottom:2px solid var(--border); padding:8px 14px 8px 0; font-weight:600;
+                  text-align:left; white-space:nowrap; color:var(--text); background:transparent; }
+  .v1 td { border-bottom:1px solid var(--border); padding:8px 14px 8px 0; vertical-align:top;
+                  line-height:1.5; color:var(--text); }
+  .v1 th:last-child, .v1 td:last-child { padding-right:0; }
+  .v1 tbody tr:last-child td { border-bottom:none; }
+
+  /* === Вариант 2: Claude-стиль (то, что я предлагаю) === */
+  .v2 .tablewrap { border:1px solid var(--border); border-radius:8px; overflow:hidden;
+                   display:inline-block; }
+  .v2 table { border-collapse:collapse; font-size:14px; }
+  .v2 th { background:var(--bg2); border-bottom:1px solid var(--border); border-right:1px solid var(--border);
+            padding:10px 16px; font-weight:600; text-align:left; white-space:nowrap; color:var(--text); }
+  .v2 td { border-bottom:1px solid var(--border); border-right:1px solid var(--border);
+            padding:10px 16px; vertical-align:top; line-height:1.5; color:var(--text); }
+  .v2 th:last-child, .v2 td:last-child { border-right:none; }
+  .v2 tbody tr:last-child td { border-bottom:none; }
+
+  /* === Вариант 3: Notion-стиль (минималистичный с зеброй) === */
+  .v3 table { border-collapse:collapse; font-size:14px; width:100%; max-width:680px; }
+  .v3 th { padding:10px 14px; font-weight:600; text-align:left; color:var(--muted);
+            font-size:12px; text-transform:uppercase; letter-spacing:0.05em;
+            border-bottom:1px solid var(--border); background:transparent; }
+  .v3 td { padding:11px 14px; vertical-align:top; line-height:1.5; color:var(--text);
+            border-bottom:1px solid var(--border); }
+  .v3 tbody tr:hover td { background:var(--bg2); }
+  .v3 tbody tr:last-child td { border-bottom:none; }
+
+  /* === Вариант 4: Линейный (как у Arena/Linear) === */
+  .v4 table { border-collapse:collapse; font-size:14px; width:100%; max-width:680px; }
+  .v4 thead { border-bottom:1px solid var(--accent); }
+  .v4 th { padding:8px 12px 12px; font-weight:600; text-align:left; color:var(--accent);
+            background:transparent; }
+  .v4 td { padding:11px 12px; vertical-align:top; line-height:1.5; color:var(--text);
+            border-bottom:1px solid var(--border); }
+  .v4 tbody tr:last-child td { border-bottom:none; }
+</style>
+</head>
+<body>
+
+<h1>Демо таблиц — 4 стиля на выбор</h1>
+<p class="sub">Каждая таблица показывает один и тот же контент. Выбери, какой нравится больше — скажи номер.</p>
+
+<div class="variant v1">
+  <h2>Вариант 1 — текущий (ChatGPT)</h2>
+  <p class="desc">Без обводки, без вертикальных линий. Минимализм.</p>
+  <table>
+    <thead><tr><th>Модель</th><th>Цена / 1М токенов</th><th>Особенности</th></tr></thead>
+    <tbody>
+      <tr><td>gpt-oss-120b</td><td>$0 (Groq, free)</td><td>Быстрая, для логики и кода</td></tr>
+      <tr><td>mistral-large</td><td>$0 (Mistral free)</td><td>Топ-качество без VPN</td></tr>
+      <tr><td>gemini-2.5-flash</td><td>$0 (~250/день)</td><td>Зрение, мультимодальность</td></tr>
+      <tr><td>claude-sonnet-4.5</td><td>$3 / $15</td><td>Лучший reasoning, платный</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="variant v2">
+  <h2>Вариант 2 — Claude (предлагаю)</h2>
+  <p class="desc">Обводка вокруг, скруглённые углы, шапка с лёгким фоном, вертикальные линии.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Модель</th><th>Цена / 1М токенов</th><th>Особенности</th></tr></thead>
+    <tbody>
+      <tr><td>gpt-oss-120b</td><td>$0 (Groq, free)</td><td>Быстрая, для логики и кода</td></tr>
+      <tr><td>mistral-large</td><td>$0 (Mistral free)</td><td>Топ-качество без VPN</td></tr>
+      <tr><td>gemini-2.5-flash</td><td>$0 (~250/день)</td><td>Зрение, мультимодальность</td></tr>
+      <tr><td>claude-sonnet-4.5</td><td>$3 / $15</td><td>Лучший reasoning, платный</td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<div class="variant v3">
+  <h2>Вариант 3 — Notion</h2>
+  <p class="desc">Шапка мелкими капителями, hover-подсветка строк, без обводки.</p>
+  <table>
+    <thead><tr><th>Модель</th><th>Цена / 1М токенов</th><th>Особенности</th></tr></thead>
+    <tbody>
+      <tr><td>gpt-oss-120b</td><td>$0 (Groq, free)</td><td>Быстрая, для логики и кода</td></tr>
+      <tr><td>mistral-large</td><td>$0 (Mistral free)</td><td>Топ-качество без VPN</td></tr>
+      <tr><td>gemini-2.5-flash</td><td>$0 (~250/день)</td><td>Зрение, мультимодальность</td></tr>
+      <tr><td>claude-sonnet-4.5</td><td>$3 / $15</td><td>Лучший reasoning, платный</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="variant v4">
+  <h2>Вариант 4 — Linear (бирюзовый акцент)</h2>
+  <p class="desc">Шапка цветом акцента, под ней яркая разделительная линия.</p>
+  <table>
+    <thead><tr><th>Модель</th><th>Цена / 1М токенов</th><th>Особенности</th></tr></thead>
+    <tbody>
+      <tr><td>gpt-oss-120b</td><td>$0 (Groq, free)</td><td>Быстрая, для логики и кода</td></tr>
+      <tr><td>mistral-large</td><td>$0 (Mistral free)</td><td>Топ-качество без VPN</td></tr>
+      <tr><td>gemini-2.5-flash</td><td>$0 (~250/день)</td><td>Зрение, мультимодальность</td></tr>
+      <tr><td>claude-sonnet-4.5</td><td>$3 / $15</td><td>Лучший reasoning, платный</td></tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

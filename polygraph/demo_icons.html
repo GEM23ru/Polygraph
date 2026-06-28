@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Polygraph — единая иконка-система</title>
+<style>
+  :root {
+    --accent:#22d3ee; --accent-2:#0891b2; --accent-soft:rgba(34,211,238,.12);
+    --bg:#0b0d12; --bg2:#12151d; --bg3:#1a1e29;
+    --border:#242936; --text:#e6e8ee; --muted:#8b93a3;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:"Inter","SF Pro Text",-apple-system,sans-serif;
+    background:var(--bg); color:var(--text); padding:40px 24px; line-height:1.5; }
+  h1 { font-size:28px; margin-bottom:8px; font-weight:700; }
+  .sub { color:var(--muted); font-size:14px; margin-bottom:48px; max-width:680px; }
+
+  .variant { max-width:1100px; margin:0 auto 80px; padding:32px; background:var(--bg2); border-radius:20px; border:1px solid var(--border); }
+  .variant h2 { font-size:22px; font-weight:700; margin-bottom:6px; color:var(--accent); }
+  .variant .desc { color:var(--muted); font-size:13px; margin-bottom:32px; }
+
+  .section { margin-bottom:32px; }
+  .section h3 { font-size:13px; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); margin-bottom:14px; font-weight:600; }
+
+  /* Welcome карточки */
+  .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+  .card { background:var(--bg3); border:1px solid var(--border); border-radius:14px; padding:18px; }
+  .card .ico { width:32px; height:32px; margin-bottom:12px; }
+  .card .ttl { font-weight:600; font-size:14px; margin-bottom:4px; }
+  .card .sub { font-size:12px; color:var(--muted); margin:0; }
+
+  /* Хедер-демо */
+  .header-demo { background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:12px 16px; display:flex; align-items:center; gap:12px; }
+  .iconbtn { background:transparent; border:1px solid var(--border); color:var(--text); width:38px; height:38px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .12s; }
+  .iconbtn:hover { background:var(--bg3); }
+  .iconbtn svg { width:18px; height:18px; }
+  .h-title { font-weight:700; font-size:15px; }
+  .h-spacer { flex:1; }
+
+  /* Theme toggle (астро) */
+  .astro-toggle { display:inline-flex; align-items:center; gap:0; background:var(--bg3); border:1px solid var(--border); border-radius:24px; padding:4px; cursor:pointer; position:relative; height:40px; min-width:88px; }
+  .astro-toggle .opt { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:all .25s; position:relative; z-index:2; }
+  .astro-toggle .opt svg { width:18px; height:18px; transition:all .25s; }
+  .astro-toggle .opt.active { background:linear-gradient(135deg, var(--accent), var(--accent-2)); }
+  .astro-toggle .opt.active svg { stroke:#04222a; }
+  .astro-toggle .opt:not(.active) svg { stroke:var(--muted); }
+
+  /* Действия под сообщением */
+  .acts-demo { display:flex; gap:4px; }
+  .act { background:transparent; border:none; width:32px; height:32px; border-radius:7px; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--muted); transition:all .12s; }
+  .act:hover { background:var(--bg3); color:var(--text); }
+  .act svg { width:16px; height:16px; }
+
+  /* Прикрепить */
+  .input-demo { background:var(--bg3); border:1px solid var(--border); border-radius:18px; padding:8px 8px 8px 12px; display:flex; gap:8px; align-items:center; max-width:600px; }
+  .input-demo .attach { background:transparent; border:1px solid var(--border); color:var(--muted); width:34px; height:34px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .input-demo .attach svg { width:18px; height:18px; }
+  .input-demo input { flex:1; background:transparent; border:none; color:var(--text); font-size:15px; outline:none; }
+  .input-demo .send { background:linear-gradient(135deg,var(--accent),var(--accent-2)); border:none; width:40px; height:40px; border-radius:11px; cursor:pointer; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+  .input-demo .send svg { width:20px; height:20px; fill:#04222a; stroke:none; }
+
+  .style-a svg { fill:none; stroke:var(--accent); stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+  .style-b svg { fill:none; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
+  .style-b .filled { fill:var(--accent); stroke:none; }
+  .style-c svg { fill:none; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+  .style-c .filled { fill:var(--accent); }
+  .style-c svg .accent { stroke:var(--accent); fill:var(--accent); }
+
+</style>
+</head>
+<body>
+
+<h1>Polygraph — единая система иконок</h1>
+<p class="sub">3 стиля. В каждом — ВСЕ иконки Polygraph (welcome-карточки + хедер + действия + ввод). Выбери стиль, который понравится.</p>
+
+
+<!-- ╔══════════════════════════════════════════════════════════════╗
+     ║   СТИЛЬ A: НЕО-БРУТАЛИСТСКИЙ КОНТУР                          ║
+     ║   Тонкие бирюзовые линии. Минималистично, чисто.             ║
+     ╚══════════════════════════════════════════════════════════════╝ -->
+<div class="variant style-a">
+  <h2>Стиль A — Нео-бруталистский контур</h2>
+  <p class="desc">Только тонкие бирюзовые линии. Никаких заливок. Минимализм, как Linear/Vercel.</p>
+
+  <div class="section">
+    <h3>Хедер (sidebar + переключатель темы «астро»)</h3>
+    <div class="header-demo">
+      <button class="iconbtn"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="9" y1="4" x2="9" y2="20"/></svg></button>
+      <span class="h-title">Polygraph</span>
+      <span class="h-spacer"></span>
+      <div class="astro-toggle">
+        <div class="opt active"><svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></div>
+        <div class="opt"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Welcome-карточки</h3>
+    <div class="cards">
+      <div class="card">
+        <svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <div class="ttl">Исследование</div>
+        <p class="sub">Найти в интернете</p>
+      </div>
+      <div class="card">
+        <svg class="ico" viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+        <div class="ttl">Текст</div>
+        <p class="sub">Написать письмо</p>
+      </div>
+      <div class="card">
+        <svg class="ico" viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26A7 7 0 0 0 12 2z"/></svg>
+        <div class="ttl">Объяснение</div>
+        <p class="sub">Разобрать тему</p>
+      </div>
+      <div class="card">
+        <svg class="ico" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        <div class="ttl">Код</div>
+        <p class="sub">Написать программу</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Действия под сообщением (копировать / повторить / редактировать)</h3>
+    <div class="acts-demo">
+      <button class="act"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+      <button class="act"><svg viewBox="0 0 24 24"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.5 9a9 9 0 0 1 14.8-3.4L23 10M1 14l4.7 4.4A9 9 0 0 0 20.5 15"/></svg></button>
+      <button class="act"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Поле ввода (прикрепить + отправить)</h3>
+    <div class="input-demo">
+      <button class="attach"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+      <input placeholder="Спроси что угодно...">
+      <button class="send"><svg viewBox="0 0 24 24"><path d="M3 11l18-8-8 18-2-7-8-3z"/></svg></button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ╔══════════════════════════════════════════════════════════════╗
+     ║   СТИЛЬ B: ЗАЛИВКА С АКЦЕНТОМ                                ║
+     ║   Бирюзовые "пузыри" с белыми внутренностями. Material 3.    ║
+     ╚══════════════════════════════════════════════════════════════╝ -->
+<div class="variant style-b">
+  <h2>Стиль B — Заливка с акцентом</h2>
+  <p class="desc">Иконки с бирюзовой заливкой и белыми деталями. Дружелюбный, материальный. Как у Google.</p>
+
+  <div class="section">
+    <h3>Хедер</h3>
+    <div class="header-demo">
+      <button class="iconbtn"><svg viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="4" width="18" height="16" rx="2" class="filled"/><line x1="9" y1="4" x2="9" y2="20" stroke="#0b0d12"/></svg></button>
+      <span class="h-title">Polygraph</span>
+      <span class="h-spacer"></span>
+      <div class="astro-toggle">
+        <div class="opt active"><svg viewBox="0 0 24 24" fill="#04222a" stroke="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></div>
+        <div class="opt"><svg viewBox="0 0 24 24" fill="var(--muted)" stroke="none"><circle cx="12" cy="12" r="4"/><rect x="11.5" y="1" width="1" height="4" rx="0.5"/><rect x="11.5" y="19" width="1" height="4" rx="0.5"/><rect x="1" y="11.5" width="4" height="1" rx="0.5"/><rect x="19" y="11.5" width="4" height="1" rx="0.5"/></svg></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Welcome-карточки</h3>
+    <div class="cards">
+      <div class="card">
+        <svg class="ico" viewBox="0 0 24 24" stroke="var(--accent)"><circle cx="11" cy="11" r="8" class="filled"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <div class="ttl">Исследование</div>
+        <p class="sub">Найти в интернете</p>
+      </div>
+      <div class="card">
+        <svg class="ico" viewBox="0 0 24 24" stroke="var(--accent)"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" class="filled"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" fill="#04222a"/></svg>
+        <div class="ttl">Текст</div>
+        <p class="sub">Написать письмо</p>
+      </div>
+      <div class="card">
+        <svg class="ico" viewBox="0 0 24 24" stroke="var(--accent)"><path d="M12 2a7 7 0 0 0-4 12.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26A7 7 0 0 0 12 2z" class="filled"/><line x1="9" y1="21" x2="15" y2="21" stroke-width="2"/></svg>
+        <div class="ttl">Объяснение</div>
+        <p class="sub">Разобрать тему</p>
+      </div>
+      <div class="card">
+        <svg class="ico" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="3" class="filled"/><polyline points="16 14 19 11 16 8" stroke="#04222a" fill="none"/><polyline points="8 8 5 11 8 14" stroke="#04222a" fill="none"/></svg>
+        <div class="ttl">Код</div>
+        <p class="sub">Написать программу</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Действия под сообщением</h3>
+    <div class="acts-demo">
+      <button class="act"><svg viewBox="0 0 24 24" stroke="currentColor"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+      <button class="act"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M23 4v6h-6M1 20v-6h6M3.5 9a9 9 0 0 1 14.8-3.4L23 10M1 14l4.7 4.4A9 9 0 0 0 20.5 15"/></svg></button>
+      <button class="act"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Поле ввода</h3>
+    <div class="input-demo">
+      <button class="attach"><svg viewBox="0 0 24 24" fill="var(--accent)" stroke="none"><circle cx="12" cy="12" r="11"/><line x1="12" y1="7" x2="12" y2="17" stroke="#04222a" stroke-width="2.5" stroke-linecap="round"/><line x1="7" y1="12" x2="17" y2="12" stroke="#04222a" stroke-width="2.5" stroke-linecap="round"/></svg></button>
+      <input placeholder="Спроси что угодно...">
+      <button class="send"><svg viewBox="0 0 24 24"><path d="M3 11l18-8-8 18-2-7-8-3z"/></svg></button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ╔══════════════════════════════════════════════════════════════╗
+     ║   СТИЛЬ C: ЛАМПОЧКА (DUOTONE + ИСКРА)                         ║
+     ║   Тонкие контуры + мини-акцент (искра/точка) бирюзовым       ║
+     ╚══════════════════════════════════════════════════════════════╝ -->
+<div class="variant style-c">
+  <h2>Стиль C — Duotone с искрой</h2>
+  <p class="desc">Тонкие белые контуры + мини-акцент бирюзовой точкой. Эстетика «технического чертежа с искрой жизни». Как у Notion AI.</p>
+
+  <div class="section">
+    <h3>Хедер</h3>
+    <div class="header-demo">
+      <button class="iconbtn"><svg viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="9" y1="4" x2="9" y2="20"/><circle cx="6" cy="8" r="1" class="accent"/></svg></button>
+      <span class="h-title">Polygraph</span>
+      <span class="h-spacer"></span>
+      <div class="astro-toggle">
+        <div class="opt active"><svg viewBox="0 0 24 24" stroke="#04222a"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="#04222a"/><circle cx="16" cy="9" r="0.8" fill="#fff" stroke="none"/></svg></div>
+        <div class="opt"><svg viewBox="0 0 24 24" stroke="var(--muted)"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Welcome-карточки</h3>
+    <div class="cards">
+      <div class="card">
+        <svg class="ico" viewBox="0 0 24 24" stroke="currentColor"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><circle cx="11" cy="11" r="2" class="accent"/></svg>
+        <div class="ttl">Исследование</div>
+        <p class="sub">Найти в интернете</p>
+      </div>
+      <div class="card">
+        <svg class="ico" viewBox="0 0 24 24" stroke="currentColor"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/><circle cx="20" cy="4" r="1" class="accent"/></svg>
+        <div class="ttl">Текст</div>
+        <p class="sub">Написать письмо</p>
+      </div>
+      <div class="card">
+        <svg class="ico" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26A7 7 0 0 0 12 2z"/><path d="M12 6l1 2 2 1-2 1-1 2-1-2-2-1 2-1z" class="accent" fill="var(--accent)" stroke="none"/></svg>
+        <div class="ttl">Объяснение</div>
+        <p class="sub">Разобрать тему</p>
+      </div>
+      <div class="card">
+        <svg class="ico" viewBox="0 0 24 24" stroke="currentColor"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14" y1="4" x2="10" y2="20" class="accent" stroke="var(--accent)"/></svg>
+        <div class="ttl">Код</div>
+        <p class="sub">Написать программу</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Действия под сообщением</h3>
+    <div class="acts-demo">
+      <button class="act"><svg viewBox="0 0 24 24" stroke="currentColor"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+      <button class="act"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M23 4v6h-6M1 20v-6h6M3.5 9a9 9 0 0 1 14.8-3.4L23 10M1 14l4.7 4.4A9 9 0 0 0 20.5 15"/></svg></button>
+      <button class="act"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Поле ввода</h3>
+    <div class="input-demo">
+      <button class="attach"><svg viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/><circle cx="12" cy="12" r="1.5" class="accent" fill="var(--accent)" stroke="none"/></svg></button>
+      <input placeholder="Спроси что угодно...">
+      <button class="send"><svg viewBox="0 0 24 24"><path d="M3 11l18-8-8 18-2-7-8-3z"/></svg></button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  // Сделаем переключатели темы кликабельными для демонстрации
+  document.querySelectorAll('.astro-toggle').forEach(t => {
+    t.addEventListener('click', () => {
+      t.querySelectorAll('.opt').forEach(o => o.classList.toggle('active'));
+    });
+  });
+</script>
+
+</body>
+</html>
